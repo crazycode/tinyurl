@@ -7,6 +7,9 @@ require './environments'
 class ShortenedUrl < ActiveRecord::Base
 end
 
+class User <ActiveRecord::Base
+end
+
 get '/' do
 	erb :index
 end
@@ -21,4 +24,21 @@ get '/:shortened' do
 	id = params[:shortened].to_i(36)
 	entry = ShortenedUrl.find(id)
 	redirect entry.url
+
+get '/login' do
+
+	erb :login
+end
+
+post 'login' do
+	#signup
+	if User.exists?(username: params[:new_username])
+		redirect '/login'
+	else
+
+	end
+	#login
+end
+
+
 end
